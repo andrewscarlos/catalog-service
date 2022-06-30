@@ -1,0 +1,27 @@
+{
+  "name": "catalog-service",
+  "version": "1.0.0",
+  "description": "admin do catalogo de videos",
+  "main": "index.js",
+  "scripts": {
+    "ts-node": "ts-node",
+    "tsc": "tsc",
+    "clean:tsc":"rm tsconfig.tsbuildinfo"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andrewscarlos/catalog-service.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/andrewscarlos/catalog-service/issues"
+  },
+  "homepage": "https://github.com/andrewscarlos/catalog-service#readme",
+  "devDependencies": {
+    "@types/node": "^18.0.0",
+    "ts-node": "^10.8.1",
+    "typescript": "^4.7.4"
+  }
+}
