@@ -1,6 +1,6 @@
 import { omit } from "lodash";
 import { Category } from "./category";
-import { validate as uuidValidate } from "uuid";
+import UniqueEntityId from "../../../@seedwork/domain/unique-entity-id.vo";
 
 describe("Category Unit Tests", () => {
   it("constructor of category", () => {
@@ -58,22 +58,18 @@ describe("Category Unit Tests", () => {
   it("id field", () => {
     let category = new Category({ name: "Movie" });
     expect(category.id).not.toBeNull();
-    expect(uuidValidate(category.id)).toBeTruthy();
 
     category = new Category({ name: "Movie" }, null);
     expect(category.id).not.toBeNull();
-    expect(uuidValidate(category.id)).toBeTruthy();
+    expect(category.id).toBeInstanceOf(UniqueEntityId);
 
     category = new Category({ name: "Movie" }, undefined);
     expect(category.id).not.toBeNull();
-    expect(uuidValidate(category.id)).toBeTruthy();
-
-    category = new Category(
-      { name: "Movie" },
-      "5120a95c-1e99-11ed-861d-0242ac120002"
-    );
+    expect(category.id).toBeInstanceOf(UniqueEntityId);
+    
+    category = new Category({ name: "Movie" }, new UniqueEntityId());
     expect(category.id).not.toBeNull();
-    expect(uuidValidate(category.id)).toBeTruthy();
+    expect(category.id).toBeInstanceOf(UniqueEntityId);
   });
   it("getter of name field", () => {
     const category = new Category({ name: "Movie" });
