@@ -1,5 +1,7 @@
-import { Category } from "./category";
 import { omit } from "lodash";
+import { Category } from "./category";
+import { validate as uuidValidate } from "uuid";
+
 describe("Category Unit Tests", () => {
   it("constructor of category", () => {
     let category = new Category({ name: "Movie" });
@@ -51,6 +53,27 @@ describe("Category Unit Tests", () => {
       name: "Movie",
       created_at: createdAt,
     });
+  });
+
+  it("id field", () => {
+    let category = new Category({ name: "Movie" });
+    expect(category.id).not.toBeNull();
+    expect(uuidValidate(category.id)).toBeTruthy();
+
+    category = new Category({ name: "Movie" }, null);
+    expect(category.id).not.toBeNull();
+    expect(uuidValidate(category.id)).toBeTruthy();
+
+    category = new Category({ name: "Movie" }, undefined);
+    expect(category.id).not.toBeNull();
+    expect(uuidValidate(category.id)).toBeTruthy();
+
+    category = new Category(
+      { name: "Movie" },
+      "5120a95c-1e99-11ed-861d-0242ac120002"
+    );
+    expect(category.id).not.toBeNull();
+    expect(uuidValidate(category.id)).toBeTruthy();
   });
   it("getter of name field", () => {
     const category = new Category({ name: "Movie" });
